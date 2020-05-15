@@ -2,8 +2,14 @@
 
 **不放过每一个 Flutter 控件** <不断完善，不断更新>.  
 
-Demo 是在 [**Flutter**](https://github.com/flutter/flutter) 仓库中的 [**flutter_gallery**](https://github.com/flutter/flutter/tree/master/examples/flutter_gallery) 基础上补充完善的。  
-<ps: 一方面是 `gallery` 已有对基本控件的完美介绍；主要方面是为了不重复造轮子，好吧，我就是为了偷一部分懒，:joy:>
+Demo 是在 [**Flutter**](https://github.com/flutter/flutter) 仓库中的 [**flutter_gallery**](https://github.com/flutter/gallery) 基础上补充完善的。  
+<ps: 一方面是 `gallery` 已有对基本控件的完美介绍；主要方面是为了不重复造轮子，好吧，我就是为了偷一部分懒，:joy:>  
+
+**重要：** 本项目 master 主分支是 gallery 分支，要查看教程请切换到 [ocnyang_widgets 分支](https://github.com/OCNYang/flutter_widgets/tree/ocnyang_widgets)  
+
+## 教程列表  
+
+* [ListTile 以及 CheckboxListTile 等类似控件详解](https://github.com/OCNYang/flutter_widgets/blob/ocnyang_widgets/docs/list/ListTile.md)
 
 
 ## Widgets 目录
@@ -69,10 +75,6 @@ Semantics、MergeSemantics、ExcludeSemantics
 ### [其他]()
 
 AssetBundle、RawKeyboardListener
-
-## 教程列表  
-
-* [ListTile 以及 CheckboxListTile 等类似控件详解](https://github.com/OCNYang/flutter_widgets/blob/ocnyang_widgets/docs/list/ListTile.md)
 
 ## 附录
 
