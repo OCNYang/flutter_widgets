@@ -11,6 +11,7 @@ import 'package:gallery/codeviewer/code_displayer.dart';
 import 'package:gallery/codeviewer/code_segments.dart';
 import 'package:gallery/data/gallery_options.dart';
 import 'package:gallery/data/icons.dart';
+import 'package:gallery/demos/course/listtile_demo.dart';
 import 'package:gallery/demos/cupertino/cupertino_activity_indicator_demo.dart';
 import 'package:gallery/demos/cupertino/cupertino_alert_demo.dart';
 import 'package:gallery/demos/cupertino/cupertino_button_demo.dart';
@@ -48,6 +49,8 @@ import 'package:gallery/demos/reference/typography_demo.dart';
 import 'package:gallery/l10n/gallery_localizations.dart';
 import 'package:gallery/themes/material_demo_theme_data.dart';
 
+import '../demos/reference/colors_demo.dart';
+
 const _docsBaseUrl = 'https://api.flutter.dev/flutter';
 
 enum GalleryDemoCategory {
@@ -55,6 +58,7 @@ enum GalleryDemoCategory {
   material,
   cupertino,
   other,
+  course,
 }
 
 extension GalleryDemoExtension on GalleryDemoCategory {
@@ -68,6 +72,8 @@ extension GalleryDemoExtension on GalleryDemoCategory {
         return 'CUPERTINO';
       case GalleryDemoCategory.other:
         return localizations.homeCategoryReference;
+      case GalleryDemoCategory.course:
+        return 'OCNYang/Widgets';
       case GalleryDemoCategory.study:
     }
     return null;
@@ -86,8 +92,7 @@ class GalleryDemo {
   })  : assert(title != null),
         assert(category != null),
         assert(subtitle != null),
-        assert(category == GalleryDemoCategory.study ||
-            (slug != null && icon != null && configurations != null));
+        assert(category == GalleryDemoCategory.study || (slug != null && icon != null && configurations != null));
 
   final String title;
   final GalleryDemoCategory category;
@@ -119,7 +124,8 @@ List<GalleryDemo> allGalleryDemos(GalleryLocalizations localizations) =>
     studies(localizations).values.toList() +
     materialDemos(localizations) +
     cupertinoDemos(localizations) +
-    otherDemos(localizations);
+    otherDemos(localizations) +
+    courseDemos(localizations);
 
 Map<String, GalleryDemo> studies(GalleryLocalizations localizations) {
   return <String, GalleryDemo>{
@@ -194,19 +200,15 @@ List<GalleryDemo> materialDemos(GalleryLocalizations localizations) {
         GalleryDemoConfiguration(
           title: localizations.demoBottomNavigationPersistentLabels,
           description: localizations.demoBottomNavigationDescription,
-          documentationUrl:
-              '$_docsBaseUrl/material/BottomNavigationBar-class.html',
-          buildRoute: (_) => const BottomNavigationDemo(
-              type: BottomNavigationDemoType.withLabels),
+          documentationUrl: '$_docsBaseUrl/material/BottomNavigationBar-class.html',
+          buildRoute: (_) => const BottomNavigationDemo(type: BottomNavigationDemoType.withLabels),
           code: CodeSegments.bottomNavigationDemo,
         ),
         GalleryDemoConfiguration(
           title: localizations.demoBottomNavigationSelectedLabel,
           description: localizations.demoBottomNavigationDescription,
-          documentationUrl:
-              '$_docsBaseUrl/material/BottomNavigationBar-class.html',
-          buildRoute: (_) => const BottomNavigationDemo(
-              type: BottomNavigationDemoType.withoutLabels),
+          documentationUrl: '$_docsBaseUrl/material/BottomNavigationBar-class.html',
+          buildRoute: (_) => const BottomNavigationDemo(type: BottomNavigationDemoType.withoutLabels),
           code: CodeSegments.bottomNavigationDemo,
         ),
       ],
@@ -222,16 +224,14 @@ List<GalleryDemo> materialDemos(GalleryLocalizations localizations) {
           title: localizations.demoBottomSheetPersistentTitle,
           description: localizations.demoBottomSheetPersistentDescription,
           documentationUrl: '$_docsBaseUrl/material/BottomSheet-class.html',
-          buildRoute: (_) =>
-              const BottomSheetDemo(type: BottomSheetDemoType.persistent),
+          buildRoute: (_) => const BottomSheetDemo(type: BottomSheetDemoType.persistent),
           code: CodeSegments.bottomSheetDemoPersistent,
         ),
         GalleryDemoConfiguration(
           title: localizations.demoBottomSheetModalTitle,
           description: localizations.demoBottomSheetModalDescription,
           documentationUrl: '$_docsBaseUrl/material/BottomSheet-class.html',
-          buildRoute: (_) =>
-              const BottomSheetDemo(type: BottomSheetDemoType.modal),
+          buildRoute: (_) => const BottomSheetDemo(type: BottomSheetDemoType.modal),
           code: CodeSegments.bottomSheetDemoModal,
         ),
       ],
@@ -274,8 +274,7 @@ List<GalleryDemo> materialDemos(GalleryLocalizations localizations) {
         GalleryDemoConfiguration(
           title: localizations.demoFloatingButtonTitle,
           description: localizations.demoFloatingButtonDescription,
-          documentationUrl:
-              '$_docsBaseUrl/material/FloatingActionButton-class.html',
+          documentationUrl: '$_docsBaseUrl/material/FloatingActionButton-class.html',
           buildRoute: (_) => const ButtonDemo(type: ButtonDemoType.floating),
           code: CodeSegments.buttonDemoFloating,
         ),
@@ -381,8 +380,7 @@ List<GalleryDemo> materialDemos(GalleryLocalizations localizations) {
         GalleryDemoConfiguration(
           title: localizations.demoFullscreenDialogTitle,
           description: localizations.demoFullscreenDialogDescription,
-          documentationUrl:
-              '$_docsBaseUrl/widgets/PageRoute/fullscreenDialog.html',
+          documentationUrl: '$_docsBaseUrl/widgets/PageRoute/fullscreenDialog.html',
           buildRoute: (_) => DialogDemo(type: DialogDemoType.fullscreen),
           code: CodeSegments.dialogDemo,
         ),
@@ -399,24 +397,21 @@ List<GalleryDemo> materialDemos(GalleryLocalizations localizations) {
           title: localizations.demoGridListsImageOnlyTitle,
           description: localizations.demoGridListsDescription,
           documentationUrl: '$_docsBaseUrl/widgets/GridView-class.html',
-          buildRoute: (context) =>
-              const GridListDemo(type: GridListDemoType.imageOnly),
+          buildRoute: (context) => const GridListDemo(type: GridListDemoType.imageOnly),
           code: CodeSegments.gridListsDemo,
         ),
         GalleryDemoConfiguration(
           title: localizations.demoGridListsHeaderTitle,
           description: localizations.demoGridListsDescription,
           documentationUrl: '$_docsBaseUrl/widgets/GridView-class.html',
-          buildRoute: (context) =>
-              const GridListDemo(type: GridListDemoType.header),
+          buildRoute: (context) => const GridListDemo(type: GridListDemoType.header),
           code: CodeSegments.gridListsDemo,
         ),
         GalleryDemoConfiguration(
           title: localizations.demoGridListsFooterTitle,
           description: localizations.demoGridListsDescription,
           documentationUrl: '$_docsBaseUrl/widgets/GridView-class.html',
-          buildRoute: (context) =>
-              const GridListDemo(type: GridListDemoType.footer),
+          buildRoute: (context) => const GridListDemo(type: GridListDemoType.footer),
           code: CodeSegments.gridListsDemo,
         ),
       ],
@@ -472,8 +467,7 @@ List<GalleryDemo> materialDemos(GalleryLocalizations localizations) {
         GalleryDemoConfiguration(
           title: localizations.demoChecklistMenuTitle,
           description: localizations.demoMenuDescription,
-          documentationUrl:
-              '$_docsBaseUrl/material/CheckedPopupMenuItem-class.html',
+          documentationUrl: '$_docsBaseUrl/material/CheckedPopupMenuItem-class.html',
           buildRoute: (context) => const MenuDemo(
             type: MenuDemoType.checklistMenu,
           ),
@@ -523,8 +517,7 @@ List<GalleryDemo> materialDemos(GalleryLocalizations localizations) {
         GalleryDemoConfiguration(
           title: localizations.demoCircularProgressIndicatorTitle,
           description: localizations.demoCircularProgressIndicatorDescription,
-          documentationUrl:
-              '$_docsBaseUrl/material/CircularProgressIndicator-class.html',
+          documentationUrl: '$_docsBaseUrl/material/CircularProgressIndicator-class.html',
           buildRoute: (context) => const ProgressIndicatorDemo(
             type: ProgressIndicatorDemoType.circular,
           ),
@@ -533,8 +526,7 @@ List<GalleryDemo> materialDemos(GalleryLocalizations localizations) {
         GalleryDemoConfiguration(
           title: localizations.demoLinearProgressIndicatorTitle,
           description: localizations.demoLinearProgressIndicatorDescription,
-          documentationUrl:
-              '$_docsBaseUrl/material/LinearProgressIndicator-class.html',
+          documentationUrl: '$_docsBaseUrl/material/LinearProgressIndicator-class.html',
           buildRoute: (context) => const ProgressIndicatorDemo(
             type: ProgressIndicatorDemoType.linear,
           ),
@@ -589,24 +581,21 @@ List<GalleryDemo> materialDemos(GalleryLocalizations localizations) {
           title: localizations.demoSlidersTitle,
           description: localizations.demoSlidersDescription,
           documentationUrl: '$_docsBaseUrl/material/Slider-class.html',
-          buildRoute: (context) =>
-              const SlidersDemo(type: SlidersDemoType.sliders),
+          buildRoute: (context) => const SlidersDemo(type: SlidersDemoType.sliders),
           code: CodeSegments.slidersDemo,
         ),
         GalleryDemoConfiguration(
           title: localizations.demoRangeSlidersTitle,
           description: localizations.demoRangeSlidersDescription,
           documentationUrl: '$_docsBaseUrl/material/RangeSlider-class.html',
-          buildRoute: (context) =>
-              const SlidersDemo(type: SlidersDemoType.rangeSliders),
+          buildRoute: (context) => const SlidersDemo(type: SlidersDemoType.rangeSliders),
           code: CodeSegments.rangeSlidersDemo,
         ),
         GalleryDemoConfiguration(
           title: localizations.demoCustomSlidersTitle,
           description: localizations.demoCustomSlidersDescription,
           documentationUrl: '$_docsBaseUrl/material/SliderTheme-class.html',
-          buildRoute: (context) =>
-              const SlidersDemo(type: SlidersDemoType.customSliders),
+          buildRoute: (context) => const SlidersDemo(type: SlidersDemoType.customSliders),
           code: CodeSegments.customSlidersDemo,
         ),
       ],
@@ -638,16 +627,14 @@ List<GalleryDemo> materialDemos(GalleryLocalizations localizations) {
           title: localizations.demoTabsScrollingTitle,
           description: localizations.demoTabsDescription,
           documentationUrl: '$_docsBaseUrl/material/TabBar-class.html',
-          buildRoute: (context) =>
-              const TabsDemo(type: TabsDemoType.scrollable),
+          buildRoute: (context) => const TabsDemo(type: TabsDemoType.scrollable),
           code: CodeSegments.tabsScrollableDemo,
         ),
         GalleryDemoConfiguration(
           title: localizations.demoTabsNonScrollingTitle,
           description: localizations.demoTabsDescription,
           documentationUrl: '$_docsBaseUrl/material/TabBar-class.html',
-          buildRoute: (context) =>
-              const TabsDemo(type: TabsDemoType.nonScrollable),
+          buildRoute: (context) => const TabsDemo(type: TabsDemoType.nonScrollable),
           code: CodeSegments.tabsNonScrollableDemo,
         ),
       ],
@@ -699,8 +686,7 @@ List<GalleryDemo> cupertinoDemos(GalleryLocalizations localizations) {
         GalleryDemoConfiguration(
           title: localizations.demoCupertinoActivityIndicatorTitle,
           description: localizations.demoCupertinoActivityIndicatorDescription,
-          documentationUrl:
-              '$_docsBaseUrl/cupertino/CupertinoActivityIndicator-class.html',
+          documentationUrl: '$_docsBaseUrl/cupertino/CupertinoActivityIndicator-class.html',
           buildRoute: (_) => const CupertinoProgressIndicatorDemo(),
           code: CodeSegments.cupertinoActivityIndicatorDemo,
         ),
@@ -716,46 +702,36 @@ List<GalleryDemo> cupertinoDemos(GalleryLocalizations localizations) {
         GalleryDemoConfiguration(
           title: localizations.demoCupertinoAlertTitle,
           description: localizations.demoCupertinoAlertDescription,
-          documentationUrl:
-              '$_docsBaseUrl/cupertino/CupertinoAlertDialog-class.html',
-          buildRoute: (_) =>
-              const CupertinoAlertDemo(type: AlertDemoType.alert),
+          documentationUrl: '$_docsBaseUrl/cupertino/CupertinoAlertDialog-class.html',
+          buildRoute: (_) => const CupertinoAlertDemo(type: AlertDemoType.alert),
           code: CodeSegments.cupertinoAlertDemo,
         ),
         GalleryDemoConfiguration(
           title: localizations.demoCupertinoAlertWithTitleTitle,
           description: localizations.demoCupertinoAlertDescription,
-          documentationUrl:
-              '$_docsBaseUrl/cupertino/CupertinoAlertDialog-class.html',
-          buildRoute: (_) =>
-              const CupertinoAlertDemo(type: AlertDemoType.alertTitle),
+          documentationUrl: '$_docsBaseUrl/cupertino/CupertinoAlertDialog-class.html',
+          buildRoute: (_) => const CupertinoAlertDemo(type: AlertDemoType.alertTitle),
           code: CodeSegments.cupertinoAlertDemo,
         ),
         GalleryDemoConfiguration(
           title: localizations.demoCupertinoAlertButtonsTitle,
           description: localizations.demoCupertinoAlertDescription,
-          documentationUrl:
-              '$_docsBaseUrl/cupertino/CupertinoAlertDialog-class.html',
-          buildRoute: (_) =>
-              const CupertinoAlertDemo(type: AlertDemoType.alertButtons),
+          documentationUrl: '$_docsBaseUrl/cupertino/CupertinoAlertDialog-class.html',
+          buildRoute: (_) => const CupertinoAlertDemo(type: AlertDemoType.alertButtons),
           code: CodeSegments.cupertinoAlertDemo,
         ),
         GalleryDemoConfiguration(
           title: localizations.demoCupertinoAlertButtonsOnlyTitle,
           description: localizations.demoCupertinoAlertDescription,
-          documentationUrl:
-              '$_docsBaseUrl/cupertino/CupertinoAlertDialog-class.html',
-          buildRoute: (_) =>
-              const CupertinoAlertDemo(type: AlertDemoType.alertButtonsOnly),
+          documentationUrl: '$_docsBaseUrl/cupertino/CupertinoAlertDialog-class.html',
+          buildRoute: (_) => const CupertinoAlertDemo(type: AlertDemoType.alertButtonsOnly),
           code: CodeSegments.cupertinoAlertDemo,
         ),
         GalleryDemoConfiguration(
           title: localizations.demoCupertinoActionSheetTitle,
           description: localizations.demoCupertinoActionSheetDescription,
-          documentationUrl:
-              '$_docsBaseUrl/cupertino/CupertinoActionSheet-class.html',
-          buildRoute: (_) =>
-              const CupertinoAlertDemo(type: AlertDemoType.actionSheet),
+          documentationUrl: '$_docsBaseUrl/cupertino/CupertinoActionSheet-class.html',
+          buildRoute: (_) => const CupertinoAlertDemo(type: AlertDemoType.actionSheet),
           code: CodeSegments.cupertinoAlertDemo,
         ),
       ],
@@ -770,8 +746,7 @@ List<GalleryDemo> cupertinoDemos(GalleryLocalizations localizations) {
         GalleryDemoConfiguration(
           title: localizations.demoCupertinoButtonsTitle,
           description: localizations.demoCupertinoButtonsDescription,
-          documentationUrl:
-              '$_docsBaseUrl/cupertino/CupertinoButton-class.html',
+          documentationUrl: '$_docsBaseUrl/cupertino/CupertinoButton-class.html',
           buildRoute: (_) => const CupertinoButtonDemo(),
           code: CodeSegments.cupertinoButtonDemo,
         ),
@@ -787,8 +762,7 @@ List<GalleryDemo> cupertinoDemos(GalleryLocalizations localizations) {
         GalleryDemoConfiguration(
           title: localizations.demoCupertinoNavigationBarTitle,
           description: localizations.demoCupertinoNavigationBarDescription,
-          documentationUrl:
-              '$_docsBaseUrl/cupertino/CupertinoNavigationBar-class.html',
+          documentationUrl: '$_docsBaseUrl/cupertino/CupertinoNavigationBar-class.html',
           buildRoute: (_) => const CupertinoNavigationBarDemo(),
           code: CodeSegments.cupertinoNavigationBarDemo,
         ),
@@ -804,8 +778,7 @@ List<GalleryDemo> cupertinoDemos(GalleryLocalizations localizations) {
         GalleryDemoConfiguration(
           title: localizations.demoCupertinoPickerTitle,
           description: localizations.demoCupertinoPickerDescription,
-          documentationUrl:
-              '$_docsBaseUrl/cupertino/CupertinoDatePicker-class.html',
+          documentationUrl: '$_docsBaseUrl/cupertino/CupertinoDatePicker-class.html',
           buildRoute: (_) => const CupertinoPickerDemo(),
           code: CodeSegments.cupertinoPickersDemo,
         ),
@@ -821,8 +794,7 @@ List<GalleryDemo> cupertinoDemos(GalleryLocalizations localizations) {
         GalleryDemoConfiguration(
           title: localizations.demoCupertinoPullToRefreshTitle,
           description: localizations.demoCupertinoPullToRefreshDescription,
-          documentationUrl:
-              '$_docsBaseUrl/cupertino/CupertinoSliverRefreshControl-class.html',
+          documentationUrl: '$_docsBaseUrl/cupertino/CupertinoSliverRefreshControl-class.html',
           buildRoute: (_) => const CupertinoRefreshControlDemo(),
           code: CodeSegments.cupertinoRefreshDemo,
         ),
@@ -838,8 +810,7 @@ List<GalleryDemo> cupertinoDemos(GalleryLocalizations localizations) {
         GalleryDemoConfiguration(
           title: localizations.demoCupertinoSegmentedControlTitle,
           description: localizations.demoCupertinoSegmentedControlDescription,
-          documentationUrl:
-              '$_docsBaseUrl/cupertino/CupertinoSegmentedControl-class.html',
+          documentationUrl: '$_docsBaseUrl/cupertino/CupertinoSegmentedControl-class.html',
           buildRoute: (_) => const CupertinoSegmentedControlDemo(),
           code: CodeSegments.cupertinoSegmentedControlDemo,
         ),
@@ -855,8 +826,7 @@ List<GalleryDemo> cupertinoDemos(GalleryLocalizations localizations) {
         GalleryDemoConfiguration(
           title: localizations.demoCupertinoSliderTitle,
           description: localizations.demoCupertinoSliderDescription,
-          documentationUrl:
-              '$_docsBaseUrl/cupertino/CupertinoSlider-class.html',
+          documentationUrl: '$_docsBaseUrl/cupertino/CupertinoSlider-class.html',
           buildRoute: (_) => const CupertinoSliderDemo(),
           code: CodeSegments.cupertinoSliderDemo,
         ),
@@ -872,8 +842,7 @@ List<GalleryDemo> cupertinoDemos(GalleryLocalizations localizations) {
         GalleryDemoConfiguration(
           title: localizations.demoSelectionControlsSwitchTitle,
           description: localizations.demoCupertinoSwitchDescription,
-          documentationUrl:
-              '$_docsBaseUrl/cupertino/CupertinoSwitch-class.html',
+          documentationUrl: '$_docsBaseUrl/cupertino/CupertinoSwitch-class.html',
           buildRoute: (_) => const CupertinoSwitchDemo(),
           code: CodeSegments.cupertinoSwitchDemo,
         ),
@@ -889,8 +858,7 @@ List<GalleryDemo> cupertinoDemos(GalleryLocalizations localizations) {
         GalleryDemoConfiguration(
           title: localizations.demoCupertinoTabBarTitle,
           description: localizations.demoCupertinoTabBarDescription,
-          documentationUrl:
-              '$_docsBaseUrl/cupertino/CupertinoTabBar-class.html',
+          documentationUrl: '$_docsBaseUrl/cupertino/CupertinoTabBar-class.html',
           buildRoute: (_) => const CupertinoTabBarDemo(),
           code: CodeSegments.cupertinoNavigationDemo,
         ),
@@ -906,8 +874,7 @@ List<GalleryDemo> cupertinoDemos(GalleryLocalizations localizations) {
         GalleryDemoConfiguration(
           title: localizations.demoCupertinoTextFieldTitle,
           description: localizations.demoCupertinoTextFieldDescription,
-          documentationUrl:
-              '$_docsBaseUrl/cupertino/CupertinoTextField-class.html',
+          documentationUrl: '$_docsBaseUrl/cupertino/CupertinoTextField-class.html',
           buildRoute: (_) => const CupertinoTextFieldDemo(),
           code: CodeSegments.cupertinoTextFieldDemo,
         ),
@@ -970,6 +937,59 @@ List<GalleryDemo> otherDemos(GalleryLocalizations localizations) {
   ];
 }
 
+List<GalleryDemo> courseDemos(GalleryLocalizations localizations) {
+  return [
+    GalleryDemo(
+      title: 'ListTile',
+      icon: GalleryIcons.colors,
+      slug: 'listtile',
+      subtitle: "介绍 ListTile 及类似控件的各种用法",
+      configurations: [
+        GalleryDemoConfiguration(
+          title: "ListTile",
+          description: "常作为 List 的条目使用。这里展示了 ListTile、SwitchListTile、RadioListTile、CheckboxListTile、AboutListTile 几种类似的控件的使用效果",
+//          documentationUrl: '$_docsBaseUrl/material/MaterialColor-class.html',
+          buildRoute: (_) => const ListTileDemo(),
+//          code: TextSpan(),
+        ),
+      ],
+      category: GalleryDemoCategory.course,
+    ),
+    GalleryDemo(
+      title: localizations.demoTypographyTitle,
+      icon: GalleryIcons.customTypography,
+      slug: 'typography',
+      subtitle: localizations.demoTypographySubtitle,
+      configurations: [
+        GalleryDemoConfiguration(
+          title: localizations.demoTypographyTitle,
+          description: localizations.demoTypographyDescription,
+          documentationUrl: '$_docsBaseUrl/material/TextTheme-class.html',
+          buildRoute: (_) => const TypographyDemo(),
+          code: CodeSegments.typographyDemo,
+        ),
+      ],
+      category: GalleryDemoCategory.course,
+    ),
+    GalleryDemo(
+      title: localizations.demo2dTransformationsTitle,
+      icon: GalleryIcons.gridOn,
+      slug: '2d-transformations',
+      subtitle: localizations.demo2dTransformationsSubtitle,
+      configurations: [
+        GalleryDemoConfiguration(
+          title: localizations.demo2dTransformationsTitle,
+          description: localizations.demo2dTransformationsDescription,
+          documentationUrl: '$_docsBaseUrl/widgets/GestureDetector-class.html',
+          buildRoute: (_) => const TransformationsDemo(),
+          code: CodeSegments.transformationsDemo,
+        ),
+      ],
+      category: GalleryDemoCategory.course,
+    ),
+  ];
+}
+
 Map<String, GalleryDemo> slugToDemo(BuildContext context) {
   final localizations = GalleryLocalizations.of(context);
   return LinkedHashMap<String, GalleryDemo>.fromIterable(
@@ -991,8 +1011,7 @@ class DemoWrapper extends StatelessWidget {
       ),
       child: ApplyTextOptions(
         child: CupertinoTheme(
-          data:
-              const CupertinoThemeData().copyWith(brightness: Brightness.light),
+          data: const CupertinoThemeData().copyWith(brightness: Brightness.light),
           child: child,
         ),
       ),

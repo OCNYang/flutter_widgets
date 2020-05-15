@@ -27,6 +27,9 @@ import 'package:gallery/studies/shrine/app.dart';
 import 'package:gallery/studies/shrine/colors.dart';
 import 'package:gallery/studies/starter/app.dart';
 
+import '../data/demos.dart';
+import '../data/demos.dart';
+
 const _horizontalPadding = 32.0;
 const _carouselItemMargin = 8.0;
 const _horizontalDesktopPadding = 81.0;
@@ -105,6 +108,11 @@ class HomePage extends StatelessWidget {
           category: GalleryDemoCategory.other,
           asset: const AssetImage('assets/icons/reference/reference.png'),
           demos: otherDemos(localizations),
+        ),
+        _DesktopCategoryItem(
+          category: GalleryDemoCategory.course,
+          asset: const AssetImage('assets/icons/reference/reference.png'),
+          demos: courseDemos(localizations),
         ),
       ];
 
@@ -360,6 +368,19 @@ class _AnimatedHomePageState extends State<_AnimatedHomePage>
                 category: GalleryDemoCategory.other,
                 imageString: 'assets/icons/reference/reference.png',
                 demos: otherDemos(localizations),
+                initiallyExpanded: isTestMode,
+              ),
+            ),
+            _AnimatedCategoryItem(
+              startDelayFraction: 0.10,
+              controller: _animationController,
+              child: CategoryListItem(
+                key: const PageStorageKey<GalleryDemoCategory>(
+                  GalleryDemoCategory.course,
+                ),
+                category: GalleryDemoCategory.course,
+                imageString: 'assets/icons/reference/reference.png',
+                demos: courseDemos(localizations),
                 initiallyExpanded: isTestMode,
               ),
             ),
