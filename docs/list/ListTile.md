@@ -2,8 +2,8 @@
 
 ## 基本使用
 
-**描述：**固定高度的单个行，通常包含一些文本以及头部图像和尾部图标。  
-**用处：**从它的名字就可以看出来，一般是用来充当 ListView 的 Item。或用在 Column、Drawer 中。   
+**描述：** 固定高度的单个行，通常包含一些文本以及头部图像和尾部图标。  
+**用处：** 从它的名字就可以看出来，一般是用来充当 ListView 的 Item。或用在 Column、Drawer 中。   
 
 **示意图：**  
 ![list_tile_atts](https://raw.githubusercontent.com/OCNYang/flutter_widgets/ocnyang_widgets/docs/list/list_tile_atts.png)  
@@ -56,7 +56,7 @@ const ListTile({
 
 ### SwitchListTile
 
-**描述：**带有 Switch 的 ListTile。
+**描述：** 带有 Switch 的 ListTile。
 
 **属性及描述：**  
 
@@ -88,7 +88,7 @@ const SwitchListTile({
 
 ### CheckboxListTile
 
-**描述：**带有一个 复选框 的 ListTile。  
+**描述：** 带有一个 复选框 的 ListTile。  
 **属性及描述：**  
 ```
 const CheckboxListTile({
@@ -120,7 +120,7 @@ const CheckboxListTile({
 
 ### RadioListTile
 
-**描述：**带有 单选框 的 ListTile。  
+**描述：** 带有 单选框 的 ListTile。  
 **属性及描述：**  
 ```
 const RadioListTile({
@@ -146,13 +146,13 @@ const RadioListTile({
 大多数属性应该都能理解，可以参看上面几个同名的属性介绍。  
 > **注意点：**
 > * 和 Radio 的属性一样，当 value 的值（可以是任何类型值）和 groupValue 的值相同时，Radio 就是选中状态。
-> * 多个 RadioListTile 条目的 value 值的**类型相同**时，那么就可以理解为它们属于同一组的。
+> * 多个 RadioListTile 条目的 value 值的 **类型相同** 时，那么就可以理解为它们属于同一组的。
 > * value 和 groupValue 是以 == 比较是否相同的，所以如果是把自定义类作为 value 类型，记得重写 == 。
 
 ### AboutListTile
 这是几个控件中的一个略另类的一种。
 
-**描述：**以 ListTile 的布局显示 App 相关信息。自带点击事件，点击后弹出弹窗。通常在 Drawer 中使用。  
+**描述：** 以 ListTile 的布局显示 App 相关信息。自带点击事件，点击后弹出弹窗。通常在 Drawer 中使用。  
 **属性及描述：**  
 ```
 const AboutListTile({
