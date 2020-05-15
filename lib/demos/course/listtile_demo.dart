@@ -7,8 +7,40 @@ import 'package:flutter/material.dart';
 ///  * * * *   * * * *   *     *.Yang  @GitHub: https://github.com/OCNYang
 ////////////////////////////////////////////////////////////////////////////
 
-class ListTileDemo extends StatelessWidget {
+class ListTileDemo extends StatefulWidget {
   const ListTileDemo();
+
+  @override
+  _ListTileDemoState createState() => _ListTileDemoState();
+}
+
+class _ListTileDemoState extends State<ListTileDemo> {
+  bool checked;
+  RadioBean radioGroupValue;
+  RadioBean radioBean1 = RadioBean("RadioListTile1");
+
+  @override
+  void initState() {
+    checked = false;
+    radioGroupValue = radioBean1;
+    super.initState();
+  }
+
+  void changeSwitchCheck(bool isCheck) {
+    if (checked != isCheck) {
+      setState(() {
+        checked = isCheck;
+      });
+    }
+  }
+
+  void changeRadioGroupCheck(RadioBean radioBean) {
+    if (radioGroupValue != radioBean) {
+      setState(() {
+        radioGroupValue = radioBean;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +116,10 @@ class ListTileDemo extends StatelessWidget {
           ),
           ListTile(
             leading: Text("Leading is Text"),
-            title: Switch(value: false),
+            title: Switch(
+              value: checked,
+              onChanged: changeSwitchCheck,
+            ),
             trailing: Text(
               "Trailing is Text",
               style: Theme.of(context).textTheme.caption,
@@ -92,8 +127,110 @@ class ListTileDemo extends StatelessWidget {
             onTap: () {},
           ),
           Divider(thickness: 10, height: 10),
+          SwitchListTile(
+            value: checked,
+            title: Text("SwithListTile default"),
+            subtitle: Text("The common parameter is the same as the ListTile"),
+            secondary: FlutterLogo(size: 48),
+            dense: false,
+            isThreeLine: true,
+            onChanged: changeSwitchCheck,
+          ),
+          SwitchListTile(
+            value: checked,
+            activeColor: Colors.red,
+            activeTrackColor: Colors.blue,
+            inactiveThumbColor: Colors.yellow,
+            inactiveTrackColor: Colors.indigo,
+            title: Text("SwithListTile with custom color"),
+            onChanged: changeSwitchCheck,
+          ),
+          Divider(thickness: 10, height: 10),
+          CheckboxListTile(
+            value: checked,
+            title: Text("CheckboxListTile default"),
+            subtitle: Text("The common parameter is the same as the ListTile"),
+            secondary: FlutterLogo(size: 48),
+            dense: false,
+            isThreeLine: true,
+            onChanged: changeSwitchCheck,
+          ),
+          CheckboxListTile(
+            value: checked,
+            title: Text("CheckboxListTile"),
+            subtitle: Text("ListTileControlAffinity.leading"),
+            secondary: FlutterLogo(size: 48),
+            dense: false,
+            isThreeLine: true,
+            controlAffinity: ListTileControlAffinity.leading,
+            onChanged: changeSwitchCheck,
+          ),
+          CheckboxListTile(
+            value: checked,
+            title: Text("CheckboxListTile with custom color"),
+            activeColor: Colors.red,
+            checkColor: Colors.black,
+            onChanged: changeSwitchCheck,
+          ),
+          Divider(thickness: 10, height: 10),
+          RadioListTile<RadioBean>(
+            value: radioBean1,
+            groupValue: radioGroupValue,
+            onChanged: changeRadioGroupCheck,
+            title: Text("RadioListTile"),
+            subtitle: Text("The common parameter is the same as the ListTile"),
+            secondary: FlutterLogo(size: 48),
+            dense: false,
+            isThreeLine: true,
+          ),
+          RadioListTile<RadioBean>(
+            value: RadioBean("RadioListTile2"),
+            groupValue: radioGroupValue,
+            onChanged: changeRadioGroupCheck,
+            title: Text("RadioListTile"),
+            subtitle: Text("ListTileControlAffinity.trailing"),
+            secondary: FlutterLogo(size: 48),
+            controlAffinity: ListTileControlAffinity.trailing,
+            dense: false,
+          ),
+          RadioListTile(
+            value: RadioBean("RadioListTile3"),
+            groupValue: radioGroupValue,
+            onChanged: changeRadioGroupCheck,
+            activeColor: Colors.red,
+            title: Text("RadioListTile with custom color"),
+          ),
+          Divider(thickness: 10, height: 10),
+          AboutListTile(
+            icon: FlutterLogo(
+              size: 48.0,
+            ),
+            child: Text("AboutListTile"),
+            applicationName: "Flutter Gallery",
+            applicationVersion: "2.4.0",
+            applicationIcon: FlutterLogo(),
+            applicationLegalese: '© ${DateTime.now().year} The Flutter team & OCNYang',
+            aboutBoxChildren: [
+              Text("Gallery is an example of flutter. by The Flutter team"),
+              Text("Gallery/Course is to supplement gallery's tutorial. by OCNYang"),
+            ],
+            dense: false,
+          ),
         ],
       ),
     );
   }
+}
+
+class RadioBean {
+  String name;
+
+  RadioBean(this.name);
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) || other is RadioBean && runtimeType == other.runtimeType && name == other.name;
+
+  @override
+  int get hashCode => name.hashCode;
 }

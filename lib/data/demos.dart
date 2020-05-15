@@ -941,7 +941,7 @@ List<GalleryDemo> courseDemos(GalleryLocalizations localizations) {
   return [
     GalleryDemo(
       title: 'ListTile',
-      icon: GalleryIcons.colors,
+      icon: Icons.power_input,
       slug: 'listtile',
       subtitle: "介绍 ListTile 及类似控件的各种用法",
       configurations: [
