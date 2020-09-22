@@ -12,6 +12,7 @@ import 'package:gallery/codeviewer/code_segments.dart';
 import 'package:gallery/data/gallery_options.dart';
 import 'package:gallery/data/icons.dart';
 import 'package:gallery/demos/course/listtile_demo.dart';
+import 'package:gallery/demos/course/scaffold_demo.dart';
 import 'package:gallery/demos/cupertino/cupertino_activity_indicator_demo.dart';
 import 'package:gallery/demos/cupertino/cupertino_alert_demo.dart';
 import 'package:gallery/demos/cupertino/cupertino_button_demo.dart';
@@ -947,8 +948,10 @@ List<GalleryDemo> courseDemos(GalleryLocalizations localizations) {
       configurations: [
         GalleryDemoConfiguration(
           title: "ListTile",
-          description: "常作为 List 的条目使用。这里展示了 ListTile、SwitchListTile、RadioListTile、CheckboxListTile、AboutListTile 几种类似的控件的使用效果",
-//          documentationUrl: '$_docsBaseUrl/material/MaterialColor-class.html',
+          description:
+              "常作为 List 的条目使用。这里展示了 ListTile、SwitchListTile、RadioListTile、CheckboxListTile、AboutListTile 几种类似的控件的使用效果",
+          documentationUrl:
+              'https://github.com/OCNYang/flutter_widgets/blob/ocnyang_widgets/lib/demos/course/listtile_demo.dart',
           buildRoute: (_) => const ListTileDemo(),
 //          code: TextSpan(),
         ),
@@ -956,17 +959,18 @@ List<GalleryDemo> courseDemos(GalleryLocalizations localizations) {
       category: GalleryDemoCategory.course,
     ),
     GalleryDemo(
-      title: localizations.demoTypographyTitle,
+      title: "Scaffold",
       icon: GalleryIcons.customTypography,
-      slug: 'typography',
-      subtitle: localizations.demoTypographySubtitle,
+      slug: 'scaffold',
+      subtitle: '脚手架详细使用',
       configurations: [
         GalleryDemoConfiguration(
-          title: localizations.demoTypographyTitle,
-          description: localizations.demoTypographyDescription,
-          documentationUrl: '$_docsBaseUrl/material/TextTheme-class.html',
-          buildRoute: (_) => const TypographyDemo(),
-          code: CodeSegments.typographyDemo,
+          title: "Scaffold",
+          description: "脚手架详细使用",
+          documentationUrl:
+              'https://github.com/OCNYang/flutter_widgets/blob/ocnyang_widgets/lib/demos/course/scaffold.dart',
+          buildRoute: (_) => const ScaffoldDemo(),
+//          code: CodeSegments.typographyDemo,
         ),
       ],
       category: GalleryDemoCategory.course,

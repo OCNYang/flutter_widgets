@@ -8,7 +8,7 @@
 **用处：** 从它的名字就可以看出来，一般是用来充当 ListView 的 Item。或用在 Column、Drawer 中。   
 
 **示意图：**  
-![list_tile_atts](https://raw.githubusercontent.com/OCNYang/flutter_widgets/ocnyang_widgets/docs/list/list_tile_atts.png)  
+![list_tile_atts](https://raw.githubusercontent.com/OCNYang/flutter_widgets/master/ocnyang_widgets/docs/list/list_tile_atts.png)  
 
 **属性及描述：**  
 
