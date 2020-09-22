@@ -4,7 +4,7 @@
 
 import 'package:flutter/cupertino.dart';
 
-import 'package:gallery/l10n/gallery_localizations.dart';
+import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
 
 // BEGIN cupertinoNavigationDemo
 
@@ -42,7 +42,7 @@ class CupertinoTabBarDemo extends StatelessWidget {
           items: [
             for (final tabInfo in _tabInfo)
               BottomNavigationBarItem(
-                title: Text(tabInfo.title),
+                label: tabInfo.title,
                 icon: Icon(tabInfo.icon),
               ),
           ],

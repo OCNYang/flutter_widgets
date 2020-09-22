@@ -42,13 +42,23 @@ import 'package:gallery/demos/material/snackbar_demo.dart';
 import 'package:gallery/demos/material/tabs_demo.dart';
 import 'package:gallery/demos/material/text_field_demo.dart';
 import 'package:gallery/demos/material/tooltip_demo.dart';
+import 'package:gallery/demos/reference/motion_demo_container_transition.dart';
+import 'package:gallery/demos/reference/motion_demo_fade_through_transition.dart';
+import 'package:gallery/demos/reference/motion_demo_fade_scale_transition.dart';
+import 'package:gallery/demos/reference/motion_demo_shared_x_axis_transition.dart';
+import 'package:gallery/demos/reference/motion_demo_shared_y_axis_transition.dart';
+import 'package:gallery/demos/reference/motion_demo_shared_z_axis_transition.dart';
 import 'package:gallery/demos/reference/colors_demo.dart';
 import 'package:gallery/demos/reference/transformations_demo.dart';
 import 'package:gallery/demos/reference/typography_demo.dart';
-import 'package:gallery/l10n/gallery_localizations.dart';
+import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
+import 'package:flutter_gen/gen_l10n/gallery_localizations_en.dart'
+    show GalleryLocalizationsEn;
 import 'package:gallery/themes/material_demo_theme_data.dart';
 
 const _docsBaseUrl = 'https://api.flutter.dev/flutter';
+const _docsAnimationsUrl =
+    'https://pub.dev/documentation/animations/latest/animations';
 
 enum GalleryDemoCategory {
   study,
@@ -79,6 +89,8 @@ class GalleryDemo {
     @required this.title,
     @required this.category,
     @required this.subtitle,
+    // This parameter is required for studies.
+    this.studyId,
     // Parameters below are required for non-study demos.
     this.slug,
     this.icon,
@@ -87,16 +99,18 @@ class GalleryDemo {
         assert(category != null),
         assert(subtitle != null),
         assert(category == GalleryDemoCategory.study ||
-            (slug != null && icon != null && configurations != null));
+            (slug != null && icon != null && configurations != null)),
+        assert(slug != null || studyId != null);
 
   final String title;
   final GalleryDemoCategory category;
   final String subtitle;
+  final String studyId;
   final String slug;
   final IconData icon;
   final List<GalleryDemoConfiguration> configurations;
 
-  String get describe => '$title@${category.name}';
+  String get describe => '${slug ?? studyId}@${category.name}';
 }
 
 class GalleryDemoConfiguration {
@@ -121,32 +135,48 @@ List<GalleryDemo> allGalleryDemos(GalleryLocalizations localizations) =>
     cupertinoDemos(localizations) +
     otherDemos(localizations);
 
+List<String> allGalleryDemoDescriptions() =>
+    allGalleryDemos(GalleryLocalizationsEn())
+        .map((demo) => demo.describe)
+        .toList();
+
 Map<String, GalleryDemo> studies(GalleryLocalizations localizations) {
   return <String, GalleryDemo>{
     'shrine': GalleryDemo(
       title: 'Shrine',
       subtitle: localizations.shrineDescription,
       category: GalleryDemoCategory.study,
+      studyId: 'shrine',
     ),
     'rally': GalleryDemo(
       title: 'Rally',
       subtitle: localizations.rallyDescription,
       category: GalleryDemoCategory.study,
+      studyId: 'rally',
     ),
     'crane': GalleryDemo(
       title: 'Crane',
       subtitle: localizations.craneDescription,
       category: GalleryDemoCategory.study,
+      studyId: 'crane',
     ),
     'fortnightly': GalleryDemo(
       title: 'Fortnightly',
       subtitle: localizations.fortnightlyDescription,
       category: GalleryDemoCategory.study,
+      studyId: 'fortnightly',
+    ),
+    'reply': GalleryDemo(
+      title: 'Reply',
+      subtitle: localizations.replyDescription,
+      category: GalleryDemoCategory.study,
+      studyId: 'reply',
     ),
     'starterApp': GalleryDemo(
       title: localizations.starterAppTitle,
       subtitle: localizations.starterAppDescription,
       category: GalleryDemoCategory.study,
+      studyId: 'starter',
     ),
   };
 }
@@ -507,7 +537,7 @@ List<GalleryDemo> materialDemos(GalleryLocalizations localizations) {
         GalleryDemoConfiguration(
           title: localizations.demoTimePickerTitle,
           description: localizations.demoTimePickerDescription,
-          documentationUrl: '$_docsBaseUrl/material/showTimePicker.htmlhtml',
+          documentationUrl: '$_docsBaseUrl/material/showTimePicker.html',
           buildRoute: (context) => const PickerDemo(type: PickerDemoType.time),
           code: CodeSegments.pickerDemo,
         ),
@@ -919,6 +949,62 @@ List<GalleryDemo> cupertinoDemos(GalleryLocalizations localizations) {
 
 List<GalleryDemo> otherDemos(GalleryLocalizations localizations) {
   return [
+    GalleryDemo(
+      title: localizations.demoMotionTitle,
+      icon: GalleryIcons.animation,
+      slug: 'motion',
+      subtitle: localizations.demoMotionSubtitle,
+      configurations: [
+        GalleryDemoConfiguration(
+          title: localizations.demoContainerTransformTitle,
+          description: localizations.demoContainerTransformDescription,
+          documentationUrl: '$_docsAnimationsUrl/OpenContainer-class.html',
+          buildRoute: (_) => const OpenContainerTransformDemo(),
+          code: CodeSegments.openContainerTransformDemo,
+        ),
+        GalleryDemoConfiguration(
+          title: localizations.demoSharedXAxisTitle,
+          description: localizations.demoSharedAxisDescription,
+          documentationUrl:
+              '$_docsAnimationsUrl/SharedAxisTransition-class.html',
+          buildRoute: (_) => const SharedXAxisTransitionDemo(),
+          code: CodeSegments.sharedXAxisTransitionDemo,
+        ),
+        GalleryDemoConfiguration(
+          title: localizations.demoSharedYAxisTitle,
+          description: localizations.demoSharedAxisDescription,
+          documentationUrl:
+              '$_docsAnimationsUrl/SharedAxisTransition-class.html',
+          buildRoute: (_) => const SharedYAxisTransitionDemo(),
+          code: CodeSegments.sharedYAxisTransitionDemo,
+        ),
+        GalleryDemoConfiguration(
+          title: localizations.demoSharedZAxisTitle,
+          description: localizations.demoSharedAxisDescription,
+          documentationUrl:
+              '$_docsAnimationsUrl/SharedAxisTransition-class.html',
+          buildRoute: (_) => const SharedZAxisTransitionDemo(),
+          code: CodeSegments.sharedZAxisTransitionDemo,
+        ),
+        GalleryDemoConfiguration(
+          title: localizations.demoFadeThroughTitle,
+          description: localizations.demoFadeThroughDescription,
+          documentationUrl:
+              '$_docsAnimationsUrl/FadeThroughTransition-class.html',
+          buildRoute: (_) => const FadeThroughTransitionDemo(),
+          code: CodeSegments.fadeThroughTransitionDemo,
+        ),
+        GalleryDemoConfiguration(
+          title: localizations.demoFadeScaleTitle,
+          description: localizations.demoFadeScaleDescription,
+          documentationUrl:
+              '$_docsAnimationsUrl/FadeScaleTransition-class.html',
+          buildRoute: (_) => const FadeScaleTransitionDemo(),
+          code: CodeSegments.fadeScaleTransitionDemo,
+        ),
+      ],
+      category: GalleryDemoCategory.other,
+    ),
     GalleryDemo(
       title: localizations.demoColorsTitle,
       icon: GalleryIcons.colors,

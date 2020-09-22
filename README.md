@@ -74,19 +74,22 @@ platform it runs on. This is determined based on window size as outlined in
    new `.gif` as well as its estimated duration. The duration is used to
    determine how long to display the splash animation at launch.
 
-## Generating localized strings and highlighted code segments
+## Generating localizations
 
-To generate localized strings or highlighted code segments, make sure that you
-have [grinder](https://pub.dev/packages/grinder) installed by running 
+If this is the first time building the Flutter gallery, the localized
+code will not be present in the project directory. However, after running
+the application for the first time, a synthetic package will be generated
+containing the app's localizations through importing
+`package:flutter_gen/gen_l10n/`.
+
+See separate [README](lib/l10n/README.md) for more details.
+
+## Generating highlighted code segments
+
+To generate highlighted code segments, make sure that you
+have [grinder](https://pub.dev/packages/grinder) installed by running
 ```bash
 flutter pub get
-```
-
-To generate localized strings (see separate [README](lib/l10n/README.md)
-for more details):
-
-```bash
-flutter pub run grinder l10n
 ```
 
 To generate code segments (see separate [README](tool/codeviewer_cli/README.md) for
@@ -97,34 +100,32 @@ flutter pub run grinder update-code-segments
 
 ## Creating a new release (for Flutter org members)
 
-1. Bump the version number up in the `pubspec.yaml`. Use semantic versioning to determine 
+1. Bump the version number up in the `pubspec.yaml`. Use semantic versioning to determine
    which number to increment. For example `2.2.0+020200` should become `2.3.0+020300`.
-   
-2. Create a tag on the `master` branch of this repo in the form of `v2.3`.
-	* `git tag v2.3`
-	* `git push --tags`
 
-3. Publish the GH pages web release (using the [peanut package](https://pub.dev/packages/peanut)).
-    * `flutter pub global activate peanut`
-    * `flutter pub global run peanut:peanut`
-    * `git push upstream gh-pages:gh-pages`
-        * `git update-ref refs/heads/gh-pages upstream/gh-pages` if you need to align with upstream.
-    * This step can be removed once fully migrated to firebase hosting.
+2. Create tag on master branch after the version is bumped. This will start a
+   Github Actions job that will create a release draft with desktop applications
+   and apk included.
+   ```bash
+   git pull upstream master
+   git tag v2.3
+   git push upstream v2.3
+   ```
 
-4. Publish the firebase hosted web release.
+3. Publish the firebase hosted web release.
     * Log in to the account that has write access to `gallery-flutter-dev` with `firebase login`
-    * `flutter web build`
-    * `firebase deploy`
+    * `flutter build web`
+    * `firebase deploy -P prod` to deploy to production (equivalent to `firebase deploy`).
+    * `firebase deploy -P staging` to deploy to staging. Check with the team to see if the staging
+       instance is currently used for a special purpose.
 
-5. Publish the Android release (using the correct signing certificates).
+4. Publish the Android release
+    * Ensure you have the correct signing certificates.
     * Create the app bundle with `flutter build appbundle`.
     * Upload to the Play store console.
     * Publish the Play store release.
-    * Create the APK with `flutter build apk` (this is for the Github release).
 
-6. Draft a release in Github from the tag you created, call the release `Flutter Gallery 2.x`
-    * Upload the Android APK from above.
-    * Create and upload the macOS build by running `flutter build macos` and zipping the 
-      app inside `build/macos/Build/Products/Release`.
-    * Optional: Create and upload the Linux/Windows builds.
+5. Go to Releases and see the latest draft.
+    * Update the description to include what changes have been done since the
+    last release.
     * Publish the release.

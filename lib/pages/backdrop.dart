@@ -11,7 +11,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:gallery/constants.dart';
 import 'package:gallery/data/gallery_options.dart';
-import 'package:gallery/l10n/gallery_localizations.dart';
+import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
 import 'package:gallery/layout/adaptive.dart';
 import 'package:gallery/pages/home.dart';
 import 'package:gallery/pages/settings.dart';
@@ -160,8 +160,7 @@ class _BackdropState extends State<Backdrop>
           excluding: !isSettingsOpen,
           child: isSettingsOpen
               ? RawKeyboardListener(
-                  // TODO: Implement RawKeyboardListener.includeSemantics
-                  // includeSemantics: false,
+                  includeSemantics: false,
                   focusNode: _settingsPageFocusNode,
                   onKey: (event) {
                     if (event.logicalKey == LogicalKeyboardKey.escape) {
@@ -299,6 +298,7 @@ class _SettingsIcon extends AnimatedWidget {
       child: Semantics(
         sortKey: const OrdinalSortKey(1),
         button: true,
+        enabled: true,
         label: _settingsSemanticLabel(isSettingsOpenNotifier.value, context),
         child: SizedBox(
           width: _settingsButtonWidth,
@@ -326,8 +326,8 @@ class _SettingsIcon extends AnimatedWidget {
                 padding: const EdgeInsetsDirectional.only(start: 3, end: 18),
                 child: FlareActor(
                   Theme.of(context).colorScheme.brightness == Brightness.light
-                      ? 'assets/icons/settings/settings_light.flr'
-                      : 'assets/icons/settings/settings_dark.flr',
+                      ? 'packages/flutter_gallery_assets/assets/icons/settings/settings_light.flr'
+                      : 'packages/flutter_gallery_assets/assets/icons/settings/settings_dark.flr',
                   alignment: Directionality.of(context) == TextDirection.ltr
                       ? Alignment.bottomLeft
                       : Alignment.bottomRight,

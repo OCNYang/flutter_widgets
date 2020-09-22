@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:gallery/data/gallery_options.dart';
-import 'package:gallery/l10n/gallery_localizations.dart';
+import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
 import 'package:gallery/layout/adaptive.dart';
 import 'package:gallery/layout/text_scale.dart';
 import 'package:gallery/studies/shrine/app.dart';
@@ -70,6 +70,7 @@ class CategoryMenuPage extends StatelessWidget {
       builder: (context, child, model) => Semantics(
         selected: model.selectedCategory == category,
         button: true,
+        enabled: true,
         child: GestureDetector(
           onTap: () {
             model.setCategory(category);
@@ -130,6 +131,7 @@ class CategoryMenuPage extends StatelessWidget {
                   _divider(context: context),
                   Semantics(
                     button: true,
+                    enabled: true,
                     child: GestureDetector(
                       onTap: () {
                         Navigator.of(context).pushNamed(ShrineApp.loginRoute);
@@ -175,6 +177,7 @@ class CategoryMenuPage extends StatelessWidget {
                     ),
                     Semantics(
                       button: true,
+                      enabled: true,
                       child: GestureDetector(
                         onTap: () {
                           if (onCategoryTap != null) {

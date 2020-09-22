@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localized_locales/flutter_localized_locales.dart';
 import 'package:gallery/constants.dart';
 import 'package:gallery/data/gallery_options.dart';
-import 'package:gallery/l10n/gallery_localizations.dart';
+import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
 import 'package:gallery/layout/adaptive.dart';
 import 'package:gallery/pages/about.dart' as about;
 import 'package:gallery/pages/home.dart';
@@ -148,7 +148,7 @@ class _SettingsPageState extends State<SettingsPage> {
           context,
           useSentinel: true,
         ),
-        options: LinkedHashMap.of({
+        optionsMap: LinkedHashMap.of({
           systemTextScaleFactorOption: DisplayOption(
             GalleryLocalizations.of(context).settingsSystemDefault,
           ),
@@ -175,7 +175,7 @@ class _SettingsPageState extends State<SettingsPage> {
       SettingsListItem<CustomTextDirection>(
         title: GalleryLocalizations.of(context).settingsTextDirection,
         selectedOption: options.customTextDirection,
-        options: LinkedHashMap.of({
+        optionsMap: LinkedHashMap.of({
           CustomTextDirection.localeBased: DisplayOption(
             GalleryLocalizations.of(context).settingsTextDirectionLocaleBased,
           ),
@@ -198,7 +198,7 @@ class _SettingsPageState extends State<SettingsPage> {
         selectedOption: options.locale == deviceLocale
             ? systemLocaleOption
             : options.locale,
-        options: _getLocaleOptions(),
+        optionsMap: _getLocaleOptions(),
         onOptionChanged: (newLocale) {
           if (newLocale == systemLocaleOption) {
             newLocale = deviceLocale;
@@ -214,7 +214,7 @@ class _SettingsPageState extends State<SettingsPage> {
       SettingsListItem<TargetPlatform>(
         title: GalleryLocalizations.of(context).settingsPlatformMechanics,
         selectedOption: options.platform,
-        options: LinkedHashMap.of({
+        optionsMap: LinkedHashMap.of({
           TargetPlatform.android: DisplayOption('Android'),
           TargetPlatform.iOS: DisplayOption('iOS'),
           TargetPlatform.macOS: DisplayOption('macOS'),
@@ -231,7 +231,7 @@ class _SettingsPageState extends State<SettingsPage> {
       SettingsListItem<ThemeMode>(
         title: GalleryLocalizations.of(context).settingsTheme,
         selectedOption: options.themeMode,
-        options: LinkedHashMap.of({
+        optionsMap: LinkedHashMap.of({
           ThemeMode.system: DisplayOption(
             GalleryLocalizations.of(context).settingsSystemDefault,
           ),
