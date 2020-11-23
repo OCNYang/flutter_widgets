@@ -7,7 +7,7 @@ import 'package:flutter/rendering.dart';
 import 'package:intl/intl.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import 'package:gallery/l10n/gallery_localizations.dart';
+import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
 import 'package:gallery/layout/letter_spacing.dart';
 import 'package:gallery/studies/shrine/colors.dart';
 import 'package:gallery/studies/shrine/expanding_bottom_sheet.dart';
@@ -273,6 +273,7 @@ class ShoppingCartRow extends StatelessWidget {
             label: GalleryLocalizations.of(context)
                 .shrineScreenReaderRemoveProductButton(product.name(context)),
             button: true,
+            enabled: true,
             child: ExcludeSemantics(
               child: SizedBox(
                 width: _startColumnWidth,

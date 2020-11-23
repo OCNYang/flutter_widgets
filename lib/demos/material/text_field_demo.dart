@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/gestures.dart' show DragStartBehavior;
 
-import 'package:gallery/l10n/gallery_localizations.dart';
+import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
 
 // BEGIN textFieldDemo
 
@@ -71,7 +71,6 @@ class _PasswordFieldState extends State<PasswordField> {
     return TextFormField(
       key: widget.fieldKey,
       obscureText: _obscureText,
-      cursorColor: Theme.of(context).cursorColor,
       maxLength: 8,
       onSaved: widget.onSaved,
       validator: widget.validator,
@@ -114,7 +113,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo> {
     ));
   }
 
-  bool _autoValidate = false;
+  AutovalidateMode _autoValidateMode = AutovalidateMode.disabled;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final GlobalKey<FormFieldState<String>> _passwordFieldKey =
@@ -125,7 +124,8 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo> {
   void _handleSubmitted() {
     final form = _formKey.currentState;
     if (!form.validate()) {
-      _autoValidate = true; // Start validating on every change.
+      _autoValidateMode =
+          AutovalidateMode.always; // Start validating on every change.
       showInSnackBar(
         GalleryLocalizations.of(context).demoTextFieldFormErrors,
       );
@@ -169,14 +169,13 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo> {
 
   @override
   Widget build(BuildContext context) {
-    final cursorColor = Theme.of(context).cursorColor;
     const sizedBoxSpace = SizedBox(height: 24);
 
     return Scaffold(
       key: _scaffoldKey,
       body: Form(
         key: _formKey,
-        autovalidate: _autoValidate,
+        autovalidateMode: _autoValidateMode,
         child: Scrollbar(
           child: SingleChildScrollView(
             dragStartBehavior: DragStartBehavior.down,
@@ -187,7 +186,6 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo> {
                 sizedBoxSpace,
                 TextFormField(
                   textCapitalization: TextCapitalization.words,
-                  cursorColor: cursorColor,
                   decoration: InputDecoration(
                     filled: true,
                     icon: const Icon(Icons.person),
@@ -203,7 +201,6 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo> {
                 ),
                 sizedBoxSpace,
                 TextFormField(
-                  cursorColor: cursorColor,
                   decoration: InputDecoration(
                     filled: true,
                     icon: const Icon(Icons.phone),
@@ -222,14 +219,13 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo> {
                   validator: _validatePhoneNumber,
                   // TextInputFormatters are applied in sequence.
                   inputFormatters: <TextInputFormatter>[
-                    WhitelistingTextInputFormatter.digitsOnly,
+                    FilteringTextInputFormatter.digitsOnly,
                     // Fit the validating format.
                     _phoneNumberFormatter,
                   ],
                 ),
                 sizedBoxSpace,
                 TextFormField(
-                  cursorColor: cursorColor,
                   decoration: InputDecoration(
                     filled: true,
                     icon: const Icon(Icons.email),
@@ -245,7 +241,6 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo> {
                 ),
                 sizedBoxSpace,
                 TextFormField(
-                  cursorColor: cursorColor,
                   decoration: InputDecoration(
                     border: const OutlineInputBorder(),
                     hintText: GalleryLocalizations.of(context)
@@ -259,7 +254,6 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo> {
                 ),
                 sizedBoxSpace,
                 TextFormField(
-                  cursorColor: cursorColor,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     border: const OutlineInputBorder(),
@@ -285,7 +279,6 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo> {
                 ),
                 sizedBoxSpace,
                 TextFormField(
-                  cursorColor: cursorColor,
                   decoration: InputDecoration(
                     filled: true,
                     labelText: GalleryLocalizations.of(context)

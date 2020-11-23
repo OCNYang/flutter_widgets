@@ -5,7 +5,7 @@
 import 'dart:collection' show IterableMixin;
 import 'dart:math';
 import 'dart:ui' show Vertices;
-import 'package:flutter/material.dart' hide Gradient;
+import 'package:flutter/material.dart';
 import 'package:vector_math/vector_math_64.dart' show Vector3;
 
 // BEGIN transformationsDemo#2
@@ -112,6 +112,15 @@ class Board extends Object with IterableMixin<BoardPoint> {
     return distanceFromCenter <= boardRadius;
   }
 
+  // Get the size in pixels of the entire board.
+  Size get size {
+    final centerToFlat = sqrt(3) / 2 * hexagonRadius;
+    return Size(
+      (boardRadius * 2 + 1) * centerToFlat * 2,
+      2 * (hexagonRadius + boardRadius * 1.5 * hexagonRadius),
+    );
+  }
+
   // Get the distance between two BoardPoints.
   static int getDistance(BoardPoint a, BoardPoint b) {
     final a3 = a.cubeCoordinates;
@@ -124,9 +133,15 @@ class Board extends Object with IterableMixin<BoardPoint> {
   // the center of the board in both coordinate systems. If no BoardPoint at the
   // location, return null.
   BoardPoint pointToBoardPoint(Offset point) {
+    final pointCentered = Offset(
+      point.dx - size.width / 2,
+      point.dy - size.height / 2,
+    );
     final boardPoint = BoardPoint(
-      ((sqrt(3) / 3 * point.dx - 1 / 3 * point.dy) / hexagonRadius).round(),
-      ((2 / 3 * point.dy) / hexagonRadius).round(),
+      ((sqrt(3) / 3 * pointCentered.dx - 1 / 3 * pointCentered.dy) /
+              hexagonRadius)
+          .round(),
+      ((2 / 3 * pointCentered.dy) / hexagonRadius).round(),
     );
 
     if (!_validateBoardPoint(boardPoint)) {
@@ -142,8 +157,9 @@ class Board extends Object with IterableMixin<BoardPoint> {
   Point<double> boardPointToPoint(BoardPoint boardPoint) {
     return Point<double>(
       sqrt(3) * hexagonRadius * boardPoint.q +
-          sqrt(3) / 2 * hexagonRadius * boardPoint.r,
-      1.5 * hexagonRadius * boardPoint.r,
+          sqrt(3) / 2 * hexagonRadius * boardPoint.r +
+          size.width / 2,
+      1.5 * hexagonRadius * boardPoint.r + size.height / 2,
     );
   }
 

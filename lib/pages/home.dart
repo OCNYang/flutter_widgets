@@ -8,11 +8,10 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/semantics.dart';
-
+import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
 import 'package:gallery/constants.dart';
 import 'package:gallery/data/demos.dart';
 import 'package:gallery/data/gallery_options.dart';
-import 'package:gallery/l10n/gallery_localizations.dart';
 import 'package:gallery/layout/adaptive.dart';
 import 'package:gallery/layout/image_placeholder.dart';
 import 'package:gallery/pages/category_list_item.dart';
@@ -23,6 +22,7 @@ import 'package:gallery/studies/crane/colors.dart';
 import 'package:gallery/studies/fortnightly/app.dart';
 import 'package:gallery/studies/rally/app.dart';
 import 'package:gallery/studies/rally/colors.dart';
+import 'package:gallery/studies/reply/app.dart';
 import 'package:gallery/studies/shrine/app.dart';
 import 'package:gallery/studies/shrine/colors.dart';
 import 'package:gallery/studies/starter/app.dart';
@@ -47,10 +47,31 @@ class HomePage extends StatelessWidget {
     final studyDemos = studies(localizations);
     final carouselCards = <Widget>[
       _CarouselCard(
+        demo: studyDemos['reply'],
+        asset: const AssetImage(
+          'assets/studies/reply_card.png',
+          package: 'flutter_gallery_assets',
+        ),
+        assetColor: const Color(0xFF344955),
+        assetDark: const AssetImage(
+          'assets/studies/reply_card_dark.png',
+          package: 'flutter_gallery_assets',
+        ),
+        assetDarkColor: const Color(0xFF1D2327),
+        textColor: Colors.white,
+        studyRoute: ReplyApp.homeRoute,
+      ),
+      _CarouselCard(
         demo: studyDemos['shrine'],
-        asset: const AssetImage('assets/studies/shrine_card.png'),
+        asset: const AssetImage(
+          'assets/studies/shrine_card.png',
+          package: 'flutter_gallery_assets',
+        ),
         assetColor: const Color(0xFFFEDBD0),
-        assetDark: const AssetImage('assets/studies/shrine_card_dark.png'),
+        assetDark: const AssetImage(
+          'assets/studies/shrine_card_dark.png',
+          package: 'flutter_gallery_assets',
+        ),
         assetDarkColor: const Color(0xFF543B3C),
         textColor: shrineBrown900,
         studyRoute: ShrineApp.loginRoute,
@@ -58,34 +79,58 @@ class HomePage extends StatelessWidget {
       _CarouselCard(
         demo: studyDemos['rally'],
         textColor: RallyColors.accountColors[0],
-        asset: const AssetImage('assets/studies/rally_card.png'),
+        asset: const AssetImage(
+          'assets/studies/rally_card.png',
+          package: 'flutter_gallery_assets',
+        ),
         assetColor: const Color(0xFFD1F2E6),
-        assetDark: const AssetImage('assets/studies/rally_card_dark.png'),
+        assetDark: const AssetImage(
+          'assets/studies/rally_card_dark.png',
+          package: 'flutter_gallery_assets',
+        ),
         assetDarkColor: const Color(0xFF253538),
         studyRoute: RallyApp.loginRoute,
       ),
       _CarouselCard(
         demo: studyDemos['crane'],
-        asset: const AssetImage('assets/studies/crane_card.png'),
+        asset: const AssetImage(
+          'assets/studies/crane_card.png',
+          package: 'flutter_gallery_assets',
+        ),
         assetColor: const Color(0xFFFBF6F8),
-        assetDark: const AssetImage('assets/studies/crane_card_dark.png'),
+        assetDark: const AssetImage(
+          'assets/studies/crane_card_dark.png',
+          package: 'flutter_gallery_assets',
+        ),
         assetDarkColor: const Color(0xFF591946),
         textColor: cranePurple700,
         studyRoute: CraneApp.defaultRoute,
       ),
       _CarouselCard(
         demo: studyDemos['fortnightly'],
-        asset: const AssetImage('assets/studies/fortnightly_card.png'),
+        asset: const AssetImage(
+          'assets/studies/fortnightly_card.png',
+          package: 'flutter_gallery_assets',
+        ),
         assetColor: Colors.white,
-        assetDark: const AssetImage('assets/studies/fortnightly_card_dark.png'),
+        assetDark: const AssetImage(
+          'assets/studies/fortnightly_card_dark.png',
+          package: 'flutter_gallery_assets',
+        ),
         assetDarkColor: const Color(0xFF1F1F1F),
         studyRoute: FortnightlyApp.defaultRoute,
       ),
       _CarouselCard(
         demo: studyDemos['starterApp'],
-        asset: const AssetImage('assets/studies/starter_card.png'),
+        asset: const AssetImage(
+          'assets/studies/starter_card.png',
+          package: 'flutter_gallery_assets',
+        ),
         assetColor: const Color(0xFFFAF6FE),
-        assetDark: const AssetImage('assets/studies/starter_card_dark.png'),
+        assetDark: const AssetImage(
+          'assets/studies/starter_card_dark.png',
+          package: 'flutter_gallery_assets',
+        ),
         assetDarkColor: const Color(0xFF3F3D45),
         textColor: Colors.black,
         studyRoute: StarterApp.defaultRoute,
@@ -96,17 +141,26 @@ class HomePage extends StatelessWidget {
       final desktopCategoryItems = <_DesktopCategoryItem>[
         _DesktopCategoryItem(
           category: GalleryDemoCategory.material,
-          asset: const AssetImage('assets/icons/material/material.png'),
+          asset: const AssetImage(
+            'assets/icons/material/material.png',
+            package: 'flutter_gallery_assets',
+          ),
           demos: materialDemos(localizations),
         ),
         _DesktopCategoryItem(
           category: GalleryDemoCategory.cupertino,
-          asset: const AssetImage('assets/icons/cupertino/cupertino.png'),
+          asset: const AssetImage(
+            'assets/icons/cupertino/cupertino.png',
+            package: 'flutter_gallery_assets',
+          ),
           demos: cupertinoDemos(localizations),
         ),
         _DesktopCategoryItem(
           category: GalleryDemoCategory.other,
-          asset: const AssetImage('assets/icons/reference/reference.png'),
+          asset: const AssetImage(
+            'assets/icons/reference/reference.png',
+            package: 'flutter_gallery_assets',
+          ),
           demos: otherDemos(localizations),
         ),
         _DesktopCategoryItem(
@@ -163,9 +217,14 @@ class HomePage extends StatelessWidget {
                   FadeInImagePlaceholder(
                     image: Theme.of(context).colorScheme.brightness ==
                             Brightness.dark
-                        ? const AssetImage('assets/logo/flutter_logo.png')
+                        ? const AssetImage(
+                            'assets/logo/flutter_logo.png',
+                            package: 'flutter_gallery_assets',
+                          )
                         : const AssetImage(
-                            'assets/logo/flutter_logo_color.png'),
+                            'assets/logo/flutter_logo_color.png',
+                            package: 'flutter_gallery_assets',
+                          ),
                     placeholder: const SizedBox.shrink(),
                     excludeFromSemantics: true,
                   ),
@@ -1042,9 +1101,11 @@ class StudyWrapper extends StatefulWidget {
   const StudyWrapper({
     Key key,
     this.study,
+    this.alignment = AlignmentDirectional.bottomStart,
   }) : super(key: key);
 
   final Widget study;
+  final AlignmentDirectional alignment;
 
   @override
   _StudyWrapperState createState() => _StudyWrapperState();
@@ -1063,15 +1124,17 @@ class _StudyWrapperState extends State<StudyWrapper> {
             child: widget.study,
           ),
           Align(
-            alignment: AlignmentDirectional.bottomStart,
+            alignment: widget.alignment,
             child: Padding(
               padding: const EdgeInsets.all(16),
               child: Semantics(
                 sortKey: const OrdinalSortKey(0),
                 label: GalleryLocalizations.of(context).backToGallery,
                 button: true,
+                enabled: true,
                 excludeSemantics: true,
                 child: FloatingActionButton.extended(
+                  heroTag: _BackButtonHeroTag(),
                   key: const ValueKey('Back'),
                   onPressed: () {
                     Navigator.of(context)
@@ -1094,3 +1157,5 @@ class _StudyWrapperState extends State<StudyWrapper> {
     );
   }
 }
+
+class _BackButtonHeroTag {}
