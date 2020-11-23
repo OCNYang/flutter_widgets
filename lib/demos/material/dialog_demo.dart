@@ -19,7 +19,6 @@ enum DialogDemoType {
 class DialogDemo extends StatelessWidget {
   DialogDemo({Key key, @required this.type}) : super(key: key);
 
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final DialogDemoType type;
 
   String _title(BuildContext context) {
@@ -49,8 +48,8 @@ class DialogDemo extends StatelessWidget {
     );
     // The value passed to Navigator.pop() or null.
     if (value != null && value is String) {
-      _scaffoldKey.currentState.hideCurrentSnackBar();
-      _scaffoldKey.currentState.showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content:
             Text(GalleryLocalizations.of(context).dialogSelectedOption(value)),
       ));
@@ -132,13 +131,12 @@ class DialogDemo extends StatelessWidget {
       onGenerateRoute: (settings) {
         return _NoAnimationMaterialPageRoute<void>(
           builder: (context) => Scaffold(
-            key: _scaffoldKey,
             appBar: AppBar(
               automaticallyImplyLeading: false,
               title: Text(_title(context)),
             ),
             body: Center(
-              child: RaisedButton(
+              child: ElevatedButton(
                 child: Text(GalleryLocalizations.of(context).dialogShow),
                 onPressed: () {
                   switch (type) {
@@ -198,7 +196,7 @@ class _DialogButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
+    return TextButton(
       child: Text(text),
       onPressed: () {
         Navigator.of(context, rootNavigator: true).pop(text);
@@ -258,7 +256,7 @@ class _FullScreenDialogDemo extends StatelessWidget {
           appBar: AppBar(
             title: Text(GalleryLocalizations.of(context).dialogFullscreenTitle),
             actions: [
-              FlatButton(
+              TextButton(
                 child: Text(
                   GalleryLocalizations.of(context).dialogFullscreenSave,
                   style: theme.textTheme.bodyText2.copyWith(

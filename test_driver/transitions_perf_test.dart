@@ -13,7 +13,7 @@ import 'package:test/test.dart' hide TypeMatcher, isInstanceOf;
 // flutter drive --profile --trace-startup -t test_driver/transitions_perf.dart -d <device>
 // To run this test for just Crane, with scrolling:
 // flutter drive --profile --trace-startup -t test_driver/transitions_perf.dart -d <device> --dart-define=onlyCrane=true
-// To run this test for just Crane, with animations:
+// To run this test for just Reply, with animations:
 // flutter drive --profile --trace-startup -t test_driver/transitions_perf.dart -d <device> --dart-define=onlyReply=true
 
 // Demos for which timeline data will be collected using
@@ -27,11 +27,11 @@ import 'package:test/test.dart' hide TypeMatcher, isInstanceOf;
 // These names must match the output of GalleryDemo.describe in
 // lib/data/demos.dart.
 const List<String> _profiledDemos = <String>[
+  'reply@study',
   'shrine@study',
   'rally@study',
   'crane@study',
   'fortnightly@study',
-  'reply@study',
   'bottom-navigation@material',
   'button@material',
   'card@material',
@@ -269,7 +269,7 @@ void main([List<String> args = const <String>[]]) {
     test('only Reply', () async {
       if (!isTestingReplyOnly) return;
 
-      // Collect timeline data for just the Crane study.
+      // Collect timeline data for just the Reply study.
       final timeline = await driver.traceAction(
         () async {
           await runDemos(

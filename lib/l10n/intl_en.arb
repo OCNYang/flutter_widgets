@@ -593,6 +593,18 @@
   "@settingsAttribution": {
     "description": "Title for attribution (TOASTER is a proper name and should remain in English)."
   },
+  "demoAppBarTitle": "App bar",
+  "@demoAppBarTitle": {
+    "description": "Title for the material App bar component demo."
+  },
+  "demoAppBarSubtitle": "Displays information and actions relating to the current screen",
+  "@demoAppBarSubtitle": {
+    "description": "Subtitle for the material App bar component demo."
+  },
+  "demoAppBarDescription": "The App bar provides content and actions related to the current screen. It’s used for branding, screen titles, navigation, and actions",
+  "@demoAppBarDescription": {
+    "description": "Description for the material App bar component demo."
+  },
   "demoBottomAppBarTitle": "Bottom app bar",
   "@demoBottomAppBarTitle": {
     "description": "Title for the material bottom app bar component demo."
@@ -665,33 +677,33 @@
   "@demoButtonTitle": {
     "description": "Title for the material buttons component demo."
   },
-  "demoButtonSubtitle": "Flat, raised, outline, and more",
+  "demoButtonSubtitle": "Text, elevated, outlined, and more",
   "@demoButtonSubtitle": {
     "description": "Subtitle for the material buttons component demo."
   },
-  "demoFlatButtonTitle": "Flat Button",
-  "@demoFlatButtonTitle": {
-    "description": "Title for the flat button component demo."
+  "demoTextButtonTitle": "Text Button",
+  "@demoTextButtonTitle": {
+    "description": "Title for the text button component demo."
   },
-  "demoFlatButtonDescription": "A flat button displays an ink splash on press but does not lift. Use flat buttons on toolbars, in dialogs and inline with padding",
-  "@demoFlatButtonDescription": {
-    "description": "Description for the flat button component demo."
+  "demoTextButtonDescription": "A text button displays an ink splash on press but does not lift. Use text buttons on toolbars, in dialogs and inline with padding",
+  "@demoTextButtonDescription": {
+    "description": "Description for the text button component demo."
   },
-  "demoRaisedButtonTitle": "Raised Button",
-  "@demoRaisedButtonTitle": {
-    "description": "Title for the raised button component demo."
+  "demoElevatedButtonTitle": "Elevated Button",
+  "@demoElevatedButtonTitle": {
+    "description": "Title for the elevated button component demo."
   },
-  "demoRaisedButtonDescription": "Raised buttons add dimension to mostly flat layouts. They emphasize functions on busy or wide spaces.",
-  "@demoRaisedButtonDescription": {
-    "description": "Description for the raised button component demo."
+  "demoElevatedButtonDescription": "Elevated buttons add dimension to mostly flat layouts. They emphasize functions on busy or wide spaces.",
+  "@demoElevatedButtonDescription": {
+    "description": "Description for the elevated button component demo."
   },
-  "demoOutlineButtonTitle": "Outline Button",
-  "@demoOutlineButtonTitle": {
-    "description": "Title for the outline button component demo."
+  "demoOutlinedButtonTitle": "Outlined Button",
+  "@demoOutlinedButtonTitle": {
+    "description": "Title for the outlined button component demo."
   },
-  "demoOutlineButtonDescription": "Outline buttons become opaque and elevate when pressed. They are often paired with raised buttons to indicate an alternative, secondary action.",
-  "@demoOutlineButtonDescription": {
-    "description": "Description for the outline button component demo."
+  "demoOutlinedButtonDescription": "Outlined buttons become opaque and elevate when pressed. They are often paired with raised buttons to indicate an alternative, secondary action.",
+  "@demoOutlinedButtonDescription": {
+    "description": "Description for the outlined button component demo."
   },
   "demoToggleButtonTitle": "Toggle Buttons",
   "@demoToggleButtonTitle": {
@@ -1081,6 +1093,62 @@
       }
     }
   },
+  "demoNavigationDrawerTitle": "Navigation Drawer",
+  "@demoNavigationDrawerTitle": {
+    "description": "Title for the material drawer component demo."
+  },
+  "demoNavigationDrawerSubtitle": "Displaying a drawer within appbar",
+  "@demoNavigationDrawerSubtitle": {
+    "description": "Subtitle for the material drawer component demo."
+  },
+  "demoNavigationDrawerDescription": "A Material Design panel that slides in horizontally from the edge of the screen to show navigation links in an application.",
+  "@demoNavigationDrawerDescription": {
+    "description": "Description for the material drawer component demo."
+  },
+  "demoNavigationDrawerUserName": "User Name",
+  "@demoNavigationDrawerUserName": {
+    "description": "Demo username for navigation drawer."
+  },
+  "demoNavigationDrawerUserEmail": "user.name@example.com",
+  "@demoNavigationDrawerUserEmail": {
+    "description": "Demo email for navigation drawer."
+  },
+  "demoNavigationDrawerToPageOne": "Item One",
+  "@demoNavigationDrawerToPageOne": {
+    "description": "Drawer Item One."
+  },
+  "demoNavigationDrawerToPageTwo": "Item Two",
+  "@demoNavigationDrawerToPageTwo": {
+    "description": "Drawer Item Two."
+  },
+  "demoNavigationDrawerText": "Swipe from the edge or tap the upper-left icon to see the drawer",
+  "@demoNavigationDrawerText": {
+    "description": "Description to open navigation drawer."
+  },
+  "demoNavigationRailTitle": "Navigation Rail",
+  "@demoNavigationRailTitle": {
+    "description": "Title for the material Navigation Rail component demo."
+  },
+  "demoNavigationRailSubtitle": "Displaying a Navigation Rail within an app",
+  "@demoNavigationRailSubtitle": {
+    "description": "Subtitle for the material Navigation Rail component demo."
+  },
+  "demoNavigationRailDescription": "A material widget that is meant to be displayed at the left or right of an app to navigate between a small number of views, typically between three and five.",
+  "@demoNavigationRailDescription": {
+    "description": "Description for the material Navigation Rail component demo."
+  },
+  "demoNavigationRailFirst": "First",
+  "@demoNavigationRailFirst": {
+    "description": "Navigation Rail destination first label."
+  },
+  "demoNavigationRailSecond": "Second",
+  "@demoNavigationRailSecond": {
+    "description": "Navigation Rail destination second label."
+  },
+  "demoNavigationRailThird": "Third",
+  "@demoNavigationRailThird": {
+    "description": "Navigation Rail destination Third label."
+  },
   "demoMenuAnItemWithASimpleMenu": "An item with a simple menu",
   "@demoMenuAnItemWithASimpleMenu": {
     "description": "Label next to a button that opens a simple menu. A menu displays a list of choices on a temporary surface. Used as an example in a demo."
@@ -1120,6 +1188,30 @@
   "demoCupertinoButtonsDescription": "An iOS-style button. It takes in text and/or an icon that fades out and in on touch. May optionally have a background.",
   "@demoCupertinoButtonsDescription": {
     "description": "Description for the cupertino buttons component demo."
+  },
+  "demoCupertinoContextMenuTitle": "Context Menu",
+  "@demoCupertinoContextMenuTitle": {
+    "description": "Title for the cupertino context menu component demo."
+  },
+  "demoCupertinoContextMenuSubtitle": "iOS-style context menu",
+  "@demoCupertinoContextMenuSubtitle": {
+    "description": "Subtitle for the cupertino context menu component demo."
+  },
+  "demoCupertinoContextMenuDescription": "An iOS-style full screen contextual menu that appears when an element is long-pressed.",
+  "@demoCupertinoContextMenuDescription": {
+    "description": "Description for the cupertino context menu component demo."
+  },
+  "demoCupertinoContextMenuActionOne": "Action one",
+  "@demoCupertinoContextMenuActionOne": {
+    "description": "Context menu list item one"
+  },
+  "demoCupertinoContextMenuActionTwo": "Action two",
+  "@demoCupertinoContextMenuActionTwo": {
+    "description": "Context menu list item two"
+  },
+  "demoCupertinoContextMenuActionText": "Tap and hold the Flutter logo to see the context menu.",
+  "@demoCupertinoContextMenuActionText": {
+    "description": "Context menu text."
   },
   "demoCupertinoAlertsTitle": "Alerts",
   "@demoCupertinoAlertsTitle": {
@@ -1767,6 +1859,14 @@
   "demoTimePickerDescription": "Shows a dialog containing a Material Design time picker.",
   "@demoTimePickerDescription": {
     "description": "Description for time picker demo."
+  },
+  "demoDateRangePickerTitle": "Date Range Picker",
+  "@demoDateRangePickerTitle": {
+    "description": "Title for date range picker demo."
+  },
+  "demoDateRangePickerDescription": "Shows a dialog containing a Material Design date range picker.",
+  "@demoDateRangePickerDescription": {
+    "description": "Description for date range picker demo."
   },
   "demoPickersShowPicker": "SHOW PICKER",
   "@demoPickersShowPicker": {

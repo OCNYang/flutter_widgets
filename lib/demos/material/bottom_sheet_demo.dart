@@ -12,7 +12,10 @@ enum BottomSheetDemoType {
 }
 
 class BottomSheetDemo extends StatelessWidget {
-  const BottomSheetDemo({Key key, @required this.type}) : super(key: key);
+  const BottomSheetDemo({
+    Key key,
+    @required this.type,
+  }) : super(key: key);
 
   final BottomSheetDemoType type;
 
@@ -123,7 +126,7 @@ class _ModalBottomSheetDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: RaisedButton(
+      child: ElevatedButton(
         onPressed: () {
           _showModalBottomSheet(context);
         },
@@ -180,7 +183,7 @@ class _PersistentBottomSheetDemoState
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: RaisedButton(
+      child: ElevatedButton(
         onPressed: _showBottomSheetCallback,
         child: Text(GalleryLocalizations.of(context).demoBottomSheetButtonText),
       ),

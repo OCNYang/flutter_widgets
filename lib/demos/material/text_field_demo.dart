@@ -102,13 +102,11 @@ class _PasswordFieldState extends State<PasswordField> {
 }
 
 class TextFormFieldDemoState extends State<TextFormFieldDemo> {
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
   PersonData person = PersonData();
 
   void showInSnackBar(String value) {
-    _scaffoldKey.currentState.hideCurrentSnackBar();
-    _scaffoldKey.currentState.showSnackBar(SnackBar(
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text(value),
     ));
   }
@@ -172,7 +170,6 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo> {
     const sizedBoxSpace = SizedBox(height: 24);
 
     return Scaffold(
-      key: _scaffoldKey,
       body: Form(
         key: _formKey,
         autovalidateMode: _autoValidateMode,
@@ -290,7 +287,7 @@ class TextFormFieldDemoState extends State<TextFormFieldDemo> {
                 ),
                 sizedBoxSpace,
                 Center(
-                  child: RaisedButton(
+                  child: ElevatedButton(
                     child: Text(
                         GalleryLocalizations.of(context).demoTextFieldSubmit),
                     onPressed: _handleSubmitted,
