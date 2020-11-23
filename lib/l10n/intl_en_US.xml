@@ -514,6 +514,18 @@
     description="Title for attribution (TOASTER is a proper name and should remain in English)."
     >Designed by TOASTER in London</string>
   <string
+    name="demoAppBarTitle"
+    description="Title for the material App bar component demo."
+    >App bar</string>
+  <string
+    name="demoAppBarSubtitle"
+    description="Subtitle for the material App bar component demo."
+    >Displays information and actions relating to the current screen</string>
+  <string
+    name="demoAppBarDescription"
+    description="Description for the material App bar component demo."
+    >The App bar provides content and actions related to the current screen. It’s used for branding, screen titles, navigation, and actions</string>
+  <string
     name="demoBottomAppBarTitle"
     description="Title for the material bottom app bar component demo."
     >Bottom app bar</string>
@@ -588,31 +600,31 @@
   <string
     name="demoButtonSubtitle"
     description="Subtitle for the material buttons component demo."
-    >Flat, raised, outline, and more</string>
+    >Text, elevated, outlined, and more</string>
   <string
-    name="demoFlatButtonTitle"
-    description="Title for the flat button component demo."
-    >Flat Button</string>
+    name="demoTextButtonTitle"
+    description="Title for the text button component demo."
+    >Text Button</string>
   <string
-    name="demoFlatButtonDescription"
-    description="Description for the flat button component demo."
-    >A flat button displays an ink splash on press but does not lift. Use flat buttons on toolbars, in dialogs and inline with padding</string>
+    name="demoTextButtonDescription"
+    description="Description for the text button component demo."
+    >A text button displays an ink splash on press but does not lift. Use text buttons on toolbars, in dialogs and inline with padding</string>
   <string
-    name="demoRaisedButtonTitle"
-    description="Title for the raised button component demo."
-    >Raised Button</string>
+    name="demoElevatedButtonTitle"
+    description="Title for the elevated button component demo."
+    >Elevated Button</string>
   <string
-    name="demoRaisedButtonDescription"
-    description="Description for the raised button component demo."
-    >Raised buttons add dimension to mostly flat layouts. They emphasize functions on busy or wide spaces.</string>
+    name="demoElevatedButtonDescription"
+    description="Description for the elevated button component demo."
+    >Elevated buttons add dimension to mostly flat layouts. They emphasize functions on busy or wide spaces.</string>
   <string
-    name="demoOutlineButtonTitle"
-    description="Title for the outline button component demo."
-    >Outline Button</string>
+    name="demoOutlinedButtonTitle"
+    description="Title for the outlined button component demo."
+    >Outlined Button</string>
   <string
-    name="demoOutlineButtonDescription"
-    description="Description for the outline button component demo."
-    >Outline buttons become opaque and elevate when pressed. They are often paired with raised buttons to indicate an alternative, secondary action.</string>
+    name="demoOutlinedButtonDescription"
+    description="Description for the outlined button component demo."
+    >Outlined buttons become opaque and elevate when pressed. They are often paired with raised buttons to indicate an alternative, secondary action.</string>
   <string
     name="demoToggleButtonTitle"
     description="Title for the toggle buttons component demo."
@@ -982,6 +994,62 @@
     description="A text to show what value was checked."
     >Checked: {value}</string>
   <string
+    name="demoNavigationDrawerTitle"
+    description="Title for the material drawer component demo."
+    >Navigation Drawer</string>
+  <string
+    name="demoNavigationDrawerSubtitle"
+    description="Subtitle for the material drawer component demo."
+    >Displaying a drawer within appbar</string>
+  <string
+    name="demoNavigationDrawerDescription"
+    description="Description for the material drawer component demo."
+    >A Material Design panel that slides in horizontally from the edge of the screen to show navigation links in an application.</string>
+  <string
+    name="demoNavigationDrawerUserName"
+    description="Demo username for navigation drawer."
+    >User Name</string>
+  <string
+    name="demoNavigationDrawerUserEmail"
+    description="Demo email for navigation drawer."
+    >user.name@example.com</string>
+  <string
+    name="demoNavigationDrawerToPageOne"
+    description="Drawer Item One."
+    >Item One</string>
+  <string
+    name="demoNavigationDrawerToPageTwo"
+    description="Drawer Item Two."
+    >Item Two</string>
+  <string
+    name="demoNavigationDrawerText"
+    description="Description to open navigation drawer."
+    >Swipe from the edge or tap the upper-left icon to see the drawer</string>
+  <string
+    name="demoNavigationRailTitle"
+    description="Title for the material Navigation Rail component demo."
+    >Navigation Rail</string>
+  <string
+    name="demoNavigationRailSubtitle"
+    description="Subtitle for the material Navigation Rail component demo."
+    >Displaying a Navigation Rail within an app</string>
+  <string
+    name="demoNavigationRailDescription"
+    description="Description for the material Navigation Rail component demo."
+    >A material widget that is meant to be displayed at the left or right of an app to navigate between a small number of views, typically between three and five.</string>
+  <string
+    name="demoNavigationRailFirst"
+    description="Navigation Rail destination first label."
+    >First</string>
+  <string
+    name="demoNavigationRailSecond"
+    description="Navigation Rail destination second label."
+    >Second</string>
+  <string
+    name="demoNavigationRailThird"
+    description="Navigation Rail destination Third label."
+    >Third</string>
+  <string
     name="demoMenuAnItemWithASimpleMenu"
     description="Label next to a button that opens a simple menu. A menu displays a list of choices on a temporary surface. Used as an example in a demo."
     >An item with a simple menu</string>
@@ -1021,6 +1089,30 @@
     name="demoCupertinoButtonsDescription"
     description="Description for the cupertino buttons component demo."
     >An iOS-style button. It takes in text and/or an icon that fades out and in on touch. May optionally have a background.</string>
+  <string
+    name="demoCupertinoContextMenuTitle"
+    description="Title for the cupertino context menu component demo."
+    >Context Menu</string>
+  <string
+    name="demoCupertinoContextMenuSubtitle"
+    description="Subtitle for the cupertino context menu component demo."
+    >iOS-style context menu</string>
+  <string
+    name="demoCupertinoContextMenuDescription"
+    description="Description for the cupertino context menu component demo."
+    >An iOS-style full screen contextual menu that appears when an element is long-pressed.</string>
+  <string
+    name="demoCupertinoContextMenuActionOne"
+    description="Context menu list item one"
+    >Action one</string>
+  <string
+    name="demoCupertinoContextMenuActionTwo"
+    description="Context menu list item two"
+    >Action two</string>
+  <string
+    name="demoCupertinoContextMenuActionText"
+    description="Context menu text."
+    >Tap and hold the Flutter logo to see the context menu.</string>
   <string
     name="demoCupertinoAlertsTitle"
     description="Title for the cupertino alerts component demo."
@@ -1653,6 +1745,14 @@
     name="demoTimePickerDescription"
     description="Description for time picker demo."
     >Shows a dialog containing a Material Design time picker.</string>
+  <string
+    name="demoDateRangePickerTitle"
+    description="Title for date range picker demo."
+    >Date Range Picker</string>
+  <string
+    name="demoDateRangePickerDescription"
+    description="Description for date range picker demo."
+    >Shows a dialog containing a Material Design date range picker.</string>
   <string
     name="demoPickersShowPicker"
     description="Button text to show the date or time picker in the demo."

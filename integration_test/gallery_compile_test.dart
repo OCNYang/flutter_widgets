@@ -8,7 +8,7 @@ import 'package:test/test.dart';
 import 'package:path/path.dart' as path;
 
 // Benchmark size in kB.
-const int bundleSizeBenchmark = 4500;
+const int bundleSizeBenchmark = 5000;
 const int gzipBundleSizeBenchmark = 1200;
 
 void main() {
@@ -21,11 +21,10 @@ void main() {
         'main.dart.js',
       );
       await _runProcess('flutter', [
-        'build',
-        'web',
-        '-v',
-        '--release',
-        '--no-pub',
+        'pub',
+        'run',
+        'grinder',
+        'build-web',
       ]);
       await _runProcess('gzip', ['-k', js]);
       final bundleSize = await _measureSize(js);
